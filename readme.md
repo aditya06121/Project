@@ -1,0 +1,3 @@
+Well ...... this is my very first github repository, so except some truely idiotic behaviour from my part because some times i make
+really dumb desisions but i think it truley would be fine.
+man i love it, writing codes and uploading them on the internet where nobody would look at them..........
