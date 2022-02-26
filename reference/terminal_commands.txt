@@ -1,0 +1,130 @@
+USEFUL TERMINAL COMMANDS
+[] is used as placeholder
+
+SPECIAL SYMBOLS
+    tilde(~) - represents home directory
+    dash(-) - represents previous state
+    double dot (..) - represents parent of the parent directory
+    question mark (?) - single character wildcard. it can replace any single character of a string e.g - ls b?n outputs all the file which starts with b and end with n with anything in between
+    astrisk (*) - character sequence wildcard. it can replace the unspecified part of the string e.g - ls *.py outputs all the file which ends with .py
+    big brackets ([]) - character set wildcard. it can output the result accourding to the specified character set e.g - ls b[a-n] outputs all the files which starts with b and has characters from a to n as ending
+    semi colon (;) - command seperator. it's used to link multible commands
+    double ampersand (&&) - if and only if the first command is executed then and only thin the second command would be executed
+    ampersand (&) - background process. it changes the executing command to background making terminal available again
+    
+pwd - parent working directory
+
+cd [] - change directory
+    (cd -) - moves back into the last directory you were in
+
+ls - list command
+    -a - shows hidden files
+    -l - shows files in long listed format
+    -h - shows files in human redable format
+
+touch [] - creates files
+
+nano [] - creates files and opens it 
+
+cat [] - prints whatever inside the file
+
+mkdir [] - makes directory
+
+mv [moving file] [destination] - moves file
+
+cp [copying file] [destination] - copies file
+    -r - copying files recurcively, used when the moving/copying directory is not empty
+
+rm [path] - removes file
+    -rf - remove recurcively and forcefully
+
+rmdir [path] - removes directory
+
+which [command] - finds the executable binary file of the command
+
+date - gives date
+
+cal - shows calander
+
+bc - basic calculator
+
+ping [ip-address] - tests the internet connection
+
+top - shows task manager version of TERMINAL
+
+sort - shorts the output alphabetically/numerically
+
+head [] - prints top 10 lines of the file
+
+tail [] - prints last 10 lines of the file
+
+    -n [number of lines] - specifies the numbe of line for output
+
+history - prints history
+
+![no. of history] - runs the command of the history no. that is specified
+
+!! - runs the last specified command it can also be chained
+
+
+
+echo "[hello]" - prints hello
+
+printf 
+
+
+    
+
+
+
+find COMMAND
+                find [name of file you want to find] - only searches in the parent directory
+                find . - outputs all the files in parent directory and sub directories
+    . - it is used to find anythng in sub directories
+                find [test] - finds test directory in parent directory
+                find . [test] - finds test directory inside all of sub directories in parent directory
+    -type - to find file by type
+        -d for directory
+        -f for file
+                find . -type f - only finds file in parent and sub directories
+                find . -type d - only finds directory in parent and sub directories
+    -name - to find file of specific name. it is case sensetive
+                find . -type f -name "[test.txt]" - finds all test.txt file in all directories and sub directories of parent directory
+        * - it is used as wild card. let's say we don't knpw the extension for any file then we put * in there to show all the results which have anything to do with previous argument
+                find . -type f -name "[test*]" - finds all the file which as test in it in all directories and sub directories of parent directory
+                find . -type f -name "[*.py]" -find all .py files in all directories and sub directories of parent directory
+    -iname - it's not case sensitive
+                find . -type f -iname "[test*]" - finds all the file which as test in both permutations of upper and lower case in it in all directories and sub directories of parent directory
+    -mmin - modified minute, it finds any file which had been modified in the given amount of time in minutes
+    -mtime - modified time, it finds any file which had been modified in the given amount of time in 24-hour or 1 day
+    -atime - accessed time, it finds any file which had been accessed in the given amount of time in 24-hour or 1 day
+    -amin - accessed time, it finds any file which had been accessed in the given amount of time in minutes
+    -cmin - changed time, it finds any file which had been changed in the given amount of time in minutes
+    -ctime - changed time, it finds any file which had been changed in the given amount of time in 24-hour or 1 day
+        (+) - represents more than
+        (-) - represents less than
+                find . -type f -mmin -10 - finds all the file which had been modified in last 10 minutes
+                find . -type f -mmin +1 -5 - finds any file that was modified more than 1 minute but less than 5 minutes
+    -size - finds file of the specified size
+        (+) - to find file size which are more than specified size
+        (-) - to find file size which are less than specified size
+        K - for kiloByte
+        M - for megaByte
+        G - for gigaByte
+        T - for terraByte
+                find . -size +5M - finds all files sizes above 5MB
+                find . -empty - finds all empty files, directories and sub-directories in the parent directory
+    -perm - finds file with specified permission
+                find . -perm 777 - finds all file and directories with 777 permission i.e - read, write and execute
+
+    -exec - it is used to chain commands
+        {} - it is used as placeholder at the end of the command
+        + - it is used to stop the command
+    -chown - it is used to change the owner of the specified file/directory
+    -chmod - it is used to change permission of the specified file/directory
+                find [website_demo] -exec chown [coreyscafe:www-data] {}+ - it first finds the directory named website_demo and then changes its user and group to what was given
+    -maxdepth []- it defines to how much inside the directories find command has to go
+                find . -type f -name "[*.jpg]" -maxdepth 2 - it finds all the file with .jpg extension in 2 sub directories
+                find . -type f -name "[*.jpg]" -maxdepth 2 -exec rm {}+ - it finds all the .jpg files within 2 directories of the parent directory and removes them
+                find . -type f -name "[8.jpg]" -exec rm {} + - it first finds all the file with .py extension and then deletes them
+
