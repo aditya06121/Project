@@ -1,0 +1,28 @@
+git init
+git config –global user.name “[name]”
+git config –global user.email “[email address]”
+git add [path] - adds the specified file in staging area
+    . adds all the files in staging area
+git clone [url] - This command is used to obtain a repository from an existing URL.
+git log --oneline - shows git commits log in short
+git push - it uploads the latest commit to web repository
+git push [variable name] master - This command sends the committed changes of master branch to your remote repository.
+git push [variable name] [branch] - This command sends the branch commits to your remote repository.
+git push –all [variable name] - This command pushes all branches to your remote repository.
+git push [variable name] :[branch name] - This command deletes a branch on your remote repository.
+git pull - it downloads the web repository to local repository
+git reset HEAD --[path] - removes the specified file from staging area, (.) clears the staging area
+git commit -m "[message]" - commits the staged area
+git diff - This command shows the file differences which are not yet staged.
+    -staged - This command shows the differences between the files in the staging area and the latest version present.
+git [reset] - This command unstages the file, but it preserves the file contents.
+git reset –hard [commit] - This command discards all history and goes back to the specified commit.
+git rm [file] - This command deletes the file from your working directory and stages the deletion.
+git show [commit] - This command shows the metadata and content changes of the specified commit.
+git branch - This command lists all the local branches in the current repository.
+git branch [branch name] - This command creates a new branch.
+git branch -d [branch name] - This command deletes the feature branch.
+git checkout [branch name] - This command is used to switch from one branch to another.
+git checkout -b [branch name] - This command creates a new branch and also switches to it.
+git merge [branch name] - This command merges the specified branch’s history into the current branch.
+git remote add [variable name] [Remote Server Link] - This command is used to connect your local repository to the remote server.

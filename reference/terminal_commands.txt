@@ -1,6 +1,8 @@
 USEFUL TERMINAL COMMANDS
 [] is used as placeholder
 
+man [command name] | sed -n '/[query]/p'
+
 SPECIAL SYMBOLS
     tilde(~) - represents home directory
     dash(-) - represents previous state
@@ -11,11 +13,19 @@ SPECIAL SYMBOLS
     semi colon (;) - command seperator. it's used to link multible commands
     double ampersand (&&) - if and only if the first command is executed then and only thin the second command would be executed
     ampersand (&) - background process. it changes the executing command to background making terminal available again
-    
+    pipe (|) - it gives the output of the first command as the input of the second command
+    ![command name] - runs the command in the exact same way it was last run
+    ![no. of history] - runs the command of the history no. that is specified
+    !! - runs the last specified command it can also be chained
+    caret (^) - it represents the starting of a line e.g - grep ^ad /usr/aditya - this command finds every line which starts with ad in aditya directory
+    dollar ($) - it represents the end of the line
+    greater than (>) - it is used to redirect output of a command to a file (it OVERTITES THE FILE DATA)
+    double greater than (>>) - same as (>) but it DOSEN'T OVERTITES data
+
 pwd - parent working directory
 
 cd [] - change directory
-    (cd -) - moves back into the last directory you were in
+    (cd -) - it outputs the last directory you were in
 
 ls - list command
     -a - shows hidden files
@@ -54,6 +64,8 @@ top - shows task manager version of TERMINAL
 
 sort - shorts the output alphabetically/numerically
 
+uniq - it removes duplicate entry
+
 head [] - prints top 10 lines of the file
 
 tail [] - prints last 10 lines of the file
@@ -62,20 +74,79 @@ tail [] - prints last 10 lines of the file
 
 history - prints history
 
-![no. of history] - runs the command of the history no. that is specified
+kill [process id/name] - kills the program
+killall [process id/name] - kills all instances of the program
 
-!! - runs the last specified command it can also be chained
+ps -ax - outputs all the ongoing proccess
 
+ps -ax | grep '[name]' - finds the proccess id of the given proccess
 
+OWNERSHIP AND PERMISSIONS
+chown user:group [path] - it changes the user and group to which the specified file belongs
+    -R - to change ownership of all the files in the specifid directory
+
+chmod [octal permission] [path] - changes the permission of the file
+chmod u+[x,r,w] [path] - it gives r,w,x permission to user
+    -R - recurcively changing permissions
+
+ (ZIPPING FILES)
+gzip [file] - zips the file (dosen't work on directory) and removes the file only leaving .gz version of it
+gunzip [file] - unzips only one file
+zip [archive name] [files to be zipped] - zips more than 1 file (it doesn't replace the original files
+unzip [name of archive] - unzips file
+zipcloak [archive name] - creates encrypted zip file
+zipdetails [archive name] - gives detail of the zipped file
+zipgrep [string] [name of archive] - zip version of grep
+zipinfo [archive] - concise discription of the zip archive
+zipsplit -n [size in no.] [name of archive] - splits the zip file according to the specified file size 
+
+curl command
+curl -s http://tinyurl.com/api-create.php\?url\=[URL] - gives short URL
 
 echo "[hello]" - prints hello
 
-printf 
+less [file path] - same as cat but more suitable for large files because it's more user frendly
 
+grep COMMAND
+#i can only find text & number using grep
+grep [string] [path] - finds string in the specified path
+    -w - finds the exact string
+    --exclude-dir=[name of directory] - used to exclude specified directory
+                    use {} if more than 1 directory is specified
+    ./* - method to search for everything within the path
+    grip [[square bracket is used for representing each individual item of the string]] [path] - e.g - if aeio was put into the square bracket it would find every file which has either a, e, i, o on the specified directory path
+    -i - for case insensitivity
+    -A - outputs extra 3 lines after the line which contained the specified string
+    -B - outputs extra 3 lines before the line which contained the specified string
+    -C - outputs extra 3 lines both after and before the line which contained the specified string
+    -H - outputs the file name in which the specified string is
+    -n - outputs the line number of the specified string
+    -c - gives the number of lines which contain the specified string
 
-    
+printf format [arguments] - FORMAT controls the output, and defines the way that the ARGUMENTs will be expressed in the output. See the Format section. Each ARGUMENT will be inserted into the formatted output according to the definition of FORMAT.
+    format has 3 types of objects 1. ordinary characters which are copied in the output
+                                  2. interpreted character sequences, which are escaped with a backslash ("\")
+                                  3. conversion specifications, which define the way the ARGUMENTs will be expressed as part of the output.
+        printf "My name is \"%s\".\nIt's a pleasure to meet you." "John"  - Here, FORMAT is enclosed in double-quotes ("). There is one conversion specification: %s, which interprets the argument "John" as a string and inserts it into the output. There are three escaped character sequences: two occurrences of \" and one occurrence of \n. The sequence \" translates as a literal double-quote; it is escaped with a backslash so that printf knows to treat it as a literal character, and not as the end of the FORMAT string. \n is the sequence for a newline character, and tells printf to begin a new line and continue the output from there.
+                                output: My name is "John".                  It's a pleasure to meet you. - The power of printf lies in the fact that for any given FORMAT string, the ARGUMENTs can be changed to affect the output. For example, the output of the command in the above example can be altered by changing the argument, "John". If used in a script, this argument can be set to a variable. For instance, the command
+                                        It's a pleasure to meet you
+    some important escape sequenses: /n - new line
+                                     %s - a string
+                                     p - a memory address pointer
 
-
+sed COMMAND
+sed 's/[find]/[replace]/' >[path of the file] <[path of output] - finds the 'find' inside a file and repalces it to 'replace' and prints the output in new file but it only searches and replaces only one string in each line
+sed 's/[find]/[replace]/g' >[path of the file] <[path of output] - same as above but insted it works on every matched string in the line ie - global
+sed -i '[backup extension] 's/[find]/[replace]/g' [path] - it writes changes into the file and creates a backup of the file with the specified extension
+    /d - it deletes the specified string
+    sed outputs its results on terminal if no output path is specified
+sed -i '.bak' '/find/d' [path] - it creates a backup of the file then it deletes all the line which contains 'find' in the file
+    -e is used for linking multiple find and replace sequences e.g - sed -i '.bak' -e 's/hello/HELLO/g' -e 's/this/THIS/g' test.txt
+ANY SPECIAL SYMBOL CAN BE USED AS SEPERATOR IN SED REPALCE SEQUENCES AS LONG AS IT'S CONSISTANT
+man sed | sed -n '/[find]/p' - it finds the 'find' string in manpage of sed and prints the whole line on terminal
+sed -i '[.bak]' 's/ *$//' [path] - it finds spaces in the end of the line and removes them
+sed -i '[.bak]' 's/[[:space:]]*$//' [path] - it removes tabs from end of the line
+sed -i '[.bak]' '/^$/d' [path] - it deletes empty lines from the specified file
 
 find COMMAND
                 find [name of file you want to find] - only searches in the parent directory
@@ -128,3 +199,64 @@ find COMMAND
                 find . -type f -name "[*.jpg]" -maxdepth 2 -exec rm {}+ - it finds all the .jpg files within 2 directories of the parent directory and removes them
                 find . -type f -name "[8.jpg]" -exec rm {} + - it first finds all the file with .py extension and then deletes them
 
+cut -c 1-10 [path] - it removes sections from each line from a file/input
+    -c - characters
+        11- - from 11 to end of the line
+        -12 - from start to 12
+    -d - delimeter - it finds field seperator
+    -f - field number
+    echo "This is a line of text" | cut -d ' ' -f5 - according to delemiter which is space in this case grabs the 5th word according to field number
+
+tr '[find]' '[replace]' [path] - translate command, it works only on characters
+    -d - deletes the specifid characters
+    -s - removes the repeating characters
+    -cd - deletes everything except the specified character
+        :lower: - lower case
+        :upper - upper case
+        :print: - printabel characters (characters on keyboards)
+        :digit: - numbers
+
+xargs command
+command 1 | xargs command 2
+    -n - specifies the number of arguments
+    -g - gives output of command 1 as well
+    -p - specifies number of proccess
+    -I - it is used to specify placeholder
+ls | xargs -I {} echo "/home/aditya/{}" - it outputs all the file in /home/aditya with full "/home/aditya/" path
+seq 1000 | xargs -I {} touch {}.txt - it creates 1 -to- 1000 .txt files
+ls | cut -d . -f1 | xargs -I {} mv {}.txt {}.text - it takes 1 -to- 1000 .txt files, by using cut -d . it selects "." and takes '.txt' in palce holder and replaces it to '.text' using mv command
+find . -type f -name "*.txt" | xargs rm - it finds and removes every '.txt' file
+
+AWK COMMAND
+ps | awk '{print $1}' - prints 1st character from each line
+    space is column in auk
+    {print $0} - print every line
+    -F - it is used to change field seperator by default auk uses space as FS
+awk '{print $0}' [path] - prints file (same as cat)
+awk '/[]/' [path] - finds character (same as grep)
+awk '$1 == "[#]" {print $2}' [path] - it checks if the first column has '#' charater then it prints the 2nd column
+    ()==) - it exactly has to be equal
+    $0 - everything
+    (~) - it dosen't exactly have to be equal as long is contains the specified character
+    (!~) - it finds every line which dosen't contain the specified character
+    $[] - it is used to specify the column number
+    $0 - it means everything
+    NR - number of records
+    NF - last field
+    /t - tab to seperate output columns
+    substr($[line number] [column number]) - it asks to print from which line number and from which column
+    match($[line number] [character]) - it finds the specifid character in the specified line
+    RSTART - index location
+    length($[number]) - it is used to specify length of the characte
+
+awk '(NR >= 00 && NR <= 11){print $0} (NR == 11){exit}' [path] - same as head
+awk -F ":" '{print $1}' [path] - it prints 1st column after every colon (:) in a line
+awk 'BEGIN{FS = ":" ; OFS = "-"} {print $1, $6, $7}' [path] - it finds colon then treat it as field seperator and prints 1st , 2nd and 4th column but it prints (-) as field seperator
+awk -F "/" '/^\// {print $NF}' [path] - it changes the F.S to (/), then it checks the first line which starts with (\) and it prints that column
+df | awk '/\/dev/ {print $1}' - (/\[]/) - pattern for finding character
+awk 'END {print NR}' [path] - it prints the number of line
+awk 'NR == 7 , NR == 11 {print NR, $0} [path] - it prints line 7 to 11
+awk 'length($0) > 7' [path] - prints everything which has more than 7 characters
+awk '{if($NF == "/bin/fish") print $0} [path] - it finds every last field which has '/bin/fish' in it exactly and prints them all
+awk 'BEGIN {for (i=1; i<=10; i++) print "The square root of ", i, "is" , i*i;}'
+awk '$1 ~ /^[b,c]/{print $0}' [path] - it prints the whole line if the begining of the line is either equal to b or C
