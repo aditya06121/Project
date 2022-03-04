@@ -1,6 +1,6 @@
 x = [1,1,4,5,5,7,7,8,9,9,10]
-x.sort # it sorts the list for further manupilation
-print (x)
-y = x # second list for operations
-for z in x:
-    print(z)
+y = [] # Empty list
+for z in x: # z takes value from each element of x
+    if z not in y:  # checks if the elements which z takes on belongs in list y
+        y.append(z)  # z is added in y
+print(y)
