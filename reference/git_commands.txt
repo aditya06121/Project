@@ -16,6 +16,7 @@ git commit -m "[message]" - commits the staged area
 git diff - This command shows the file differences which are not yet staged.
     -staged - This command shows the differences between the files in the staging area and the latest version present.
 git [reset] - This command unstages the file, but it preserves the file contents.
+git fetch - i really don't know what it does but when my git repo and github was unaple to push i used this to sync both of 'em
 git reset –hard [commit] - This command discards all history and goes back to the specified commit.
 git rm [file] - This command deletes the file from your working directory and stages the deletion.
 git show [commit] - This command shows the metadata and content changes of the specified commit.
